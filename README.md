@@ -42,6 +42,8 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now gopkgs
 ```
 
+GoPkgs is intended to be placed behind a reverse proxy and does not support TLS.
+
 ## Issues & Support
 Issues are welcome but there is no guaranteed support available at this time.
 
