@@ -61,7 +61,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 	// check if the package is known to us
 	if url, ok := packages[name]; ok {
 		// ensure the client is ready to receive the response body
-		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		w.WriteHeader(http.StatusOK)
 
 		// build the template using the information we have
