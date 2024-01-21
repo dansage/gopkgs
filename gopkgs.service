@@ -1,0 +1,70 @@
+[Unit]
+Description=GoPkgs
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/gopkgs
+Restart=always
+RestartSec=5
+
+# Isolate the service from home and tmp directories
+ProtectHome=yes
+PrivateTmp=yes
+
+# Isolate the service from almost all devices
+PrivateDevices=yes
+
+# Make the entire control group tree read-only for the service
+ProtectControlGroups=yes
+
+# Make the entire system tree read-only for the service
+ProtectSystem=strict
+
+# Allow the service to bind to privileged ports
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+# Disallow the service from reading kernel logs
+ProtectKernelLogs=yes
+
+# Disallow the service from loading kernel modules
+ProtectKernelModules=yes
+
+# Disallow the service from changing kernel settings
+ProtectKernelTunables=yes
+
+# Disallow the service from changing the system hostname
+ProtectHostname=yes
+
+# Disallow the service from changing the system clock
+ProtectClock=yes
+
+# Disallow the service from acquiring new privileges
+NoNewPrivileges=yes
+
+# Disallow the service from accessing or creating namespaces
+RestrictNamespaces=yes
+
+# Disallow the service from requesting realtime scheduling
+RestrictRealtime=yes
+
+# Disallow the service from using write+execute memory mappings
+MemoryDenyWriteExecute=yes
+
+# Disallow the service from changing the kernel personality
+LockPersonality=yes
+
+# Disallow the service privileges not explicitly required
+CapabilityBoundingSet=~CAP_BLOCK_SUSPEND
+CapabilityBoundingSet=~CAP_KILL
+CapabilityBoundingSet=~CAP_LINUX_IMMUTABLE
+CapabilityBoundingSet=~CAP_NET_ADMIN
+CapabilityBoundingSet=~CAP_SYS_BOOT
+
+# Restrict the system calls accessible to the service
+SystemCallArchitectures=native
+
+# Use a dynamic user to run the service (instead of root)
+DynamicUser=yes
+
+[Install]
+WantedBy=multi-user.target
